@@ -7,6 +7,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 public class OnlineData {
+	// 保存服务器大对象引用并没有正确的移除
+	// 异步使用非线程安全的容器 —— 754503921
 	
 	//调整打出的伤害    格式：   生物/伤害设置/持续时间  正数是增加伤害，负数是减少
 	public static HashMap<LivingEntity,String> damageset = new HashMap<>();
@@ -16,6 +18,7 @@ public class OnlineData {
 	public static HashMap<LivingEntity,String> damagedset = new HashMap<>();
 	
 	//玩家列表
+	// 玩家死亡或更换世界后键的引用失效 —— 754503921
 	public static HashMap<Player,SPlayer> players = new HashMap<>();
 	
 	//玩家绑定技能的标记
@@ -67,7 +70,9 @@ public class OnlineData {
 	}
 	
 	/*===============================================================*/
-	
+
+
+	// 迷惑命名 —— 754503921
 	//时间流逝
 	public static void setTime1() {
 		
